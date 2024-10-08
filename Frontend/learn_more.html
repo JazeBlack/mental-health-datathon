@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn More - Mental Health Matters</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">Mental Illness Detection</div>
+            <div class="nav-links">
+                <a href="{{ url_for('home') }}" class="home-link">Home</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="learn-more-content">
+        <div class="learn-more-grid">
+            <div class="learn-more-image">
+                <img src="{{ url_for('static', filename='iStock-1009213894.jpg') }}" alt="Hands in a counseling session">
+            </div>
+            <div class="learn-more-text">
+                <h1>Learn More About Mental Health</h1>
+
+                <section class="why-matters">
+                    <h2>Why Mental Health Matters?</h2>
+                    <p>Mental health is an essential component of overall wellbeing. Taking care of it is just as
+                        important as maintaining physical health. A healthy mind not only contributes to emotional
+                        balance but also improves productivity, decision-making, and relationships. Prioritizing mental
+                        health helps in managing stress, increasing resilience, and fostering a better quality of life.
+                    </p>
+                </section>
+
+                <section class="assessment-info">
+                    <p>We offer a quick mental health assessment you can take from home. After receiving the results, we
+                        can guide you on whether a hospital visit is necessary, making the process more efficient and
+                        convenient. By eliminating travel time, we ensure you can prioritize your mental health making
+                        self-care more accessible and stress-free.</p>
+                </section>
+
+                <section class="common-concerns">
+                    <h2>Common Mental Health Concerns</h2>
+                    <ul>
+                        <li>Anxiety</li>
+                        <li>Depression</li>
+                        <li>Stress</li>
+                        <li>Loneliness</li>
+                    </ul>
+                </section>
+
+                <a href="{{ url_for('user_info') }}"  class="take-test-btn">Take Test</a>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

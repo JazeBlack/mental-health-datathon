@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Illness Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .home-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 600px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .question {
+            margin-bottom: 10px;
+        }
+        .options {
+            display: flex;
+            gap: 20px;
+        }
+        .continue-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            align-self: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Mental Illness Detection</div>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}" class="home-link">Home</a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="container">
+            <form>
+                <div class="question">
+                    <p>Have you been feeling nervous lately?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q1" value="yes"> Yes</label>
+                        <label><input type="radio" name="q1" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Have you ever experienced a state of panic?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q2" value="yes"> Yes</label>
+                        <label><input type="radio" name="q2" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Have you ever experienced rapid breathing?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q3" value="yes"> Yes</label>
+                        <label><input type="radio" name="q3" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Do you find yourself sweating frequently?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q4" value="yes"> Yes</label>
+                        <label><input type="radio" name="q4" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Have you ever had trouble maintaining focus?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q5" value="yes"> Yes</label>
+                        <label><input type="radio" name="q5" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Do you have any trouble sleeping?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q6" value="yes"> Yes</label>
+                        <label><input type="radio" name="q6" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Have you ever had a feeling of hopelessness?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q7" value="yes"> Yes</label>
+                        <label><input type="radio" name="q7" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Have you ever had outbursts of anger?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q8" value="yes"> Yes</label>
+                        <label><input type="radio" name="q8" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Have you ever had suicidal thoughts?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q9" value="yes"> Yes</label>
+                        <label><input type="radio" name="q9" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Have you constantly felt tired?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q10" value="yes"> Yes</label>
+                        <label><input type="radio" name="q10" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Do you find yourself getting reminded of stressful memories?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q11" value="yes"> Yes</label>
+                        <label><input type="radio" name="q11" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Have you had nightmares?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q12" value="yes"> Yes</label>
+                        <label><input type="radio" name="q12" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Have you ever had trouble concentrating?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q13" value="yes"> Yes</label>
+                        <label><input type="radio" name="q13" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Any trouble experienced during work?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q14" value="yes"> Yes</label>
+                        <label><input type="radio" name="q14" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Have you observed any changes in your eating habits?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q15" value="yes"> Yes</label>
+                        <label><input type="radio" name="q15" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Do you have a close friend?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q16" value="yes"> Yes</label>
+                        <label><input type="radio" name="q16" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Are you addicted to Social Media?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q17" value="yes"> Yes</label>
+                        <label><input type="radio" name="q17" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Have you experienced a gain in weight?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q18" value="yes"> Yes</label>
+                        <label><input type="radio" name="q18" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Do you have any material possessions?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q19" value="yes"> Yes</label>
+                        <label><input type="radio" name="q19" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Have you ever overreacted in a situation?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q20" value="yes"> Yes</label>
+                        <label><input type="radio" name="q20" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Do you consider yourself as an introvert?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q21" value="yes"> Yes</label>
+                        <label><input type="radio" name="q21" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Do you tend to avoid people or activities you're uncomfortable with?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q22" value="yes"> Yes</label>
+                        <label><input type="radio" name="q22" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Do you often feel negative about yourself?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q23" value="yes"> Yes</label>
+                        <label><input type="radio" name="q23" value="no"> No</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Do you often find yourself blaming yourself?</p>
+                    <div class="options">
+                        <label><input type="radio" name="q24" value="yes"> Yes</label>
+                        <label><input type="radio" name="q24" value="no"> No</label>
+                    </div>
+                </div>
+                <button type="submit" class="continue-btn">Continue</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
