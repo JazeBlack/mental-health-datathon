@@ -83,180 +83,150 @@
             <a href="{{ url_for('home') }}" class="home-link">Home</a>
         </div>
     </div>
-    <div class="content">
+    <!-- <div class="content">
         <div class="container">
             <form>
                 <div class="question">
-                    <p>Have you been feeling nervous lately?</p>
+                    <p>Enter your gender</p>
                     <div class="options">
-                        <label><input type="radio" name="q1" value="yes"> Yes</label>
-                        <label><input type="radio" name="q1" value="no"> No</label>
+                        <label><input type="radio" name="q1" value="Male"> Male</label>
+                        <label><input type="radio" name="q1" value="Female"> Female</label>
                     </div>
                 </div>
                 <div class="question">
-                    <p>Have you ever experienced a state of panic?</p>
+                    <p>What is your occupation?</p>
                     <div class="options">
-                        <label><input type="radio" name="q2" value="yes"> Yes</label>
-                        <label><input type="radio" name="q2" value="no"> No</label>
+                        <label><input type="radio" name="q2" value="Corporate"> Corporate</label>
+                        <label><input type="radio" name="q2" value="Student"> Student</label>
+                        <label><input type="radio" name="q2" value="Business"> Business</label>
+                        <label><input type="radio" name="q2" value="Housewife"> Housewife</label>
+                        <label><input type="radio" name="q2" value="Other"> Other</label>
                     </div>
                 </div>
                 <div class="question">
-                    <p>Have you ever experienced rapid breathing?</p>
+                    <p>Are you self-employed?</p>
                     <div class="options">
-                        <label><input type="radio" name="q3" value="yes"> Yes</label>
-                        <label><input type="radio" name="q3" value="no"> No</label>
+                        <label><input type="radio" name="q3" value="Yes"> Yes</label>
+                        <label><input type="radio" name="q3" value="No"> No</label>
                     </div>
                 </div>
                 <div class="question">
-                    <p>Do you find yourself sweating frequently?</p>
+                    <p>Does your family have a history of mental health issues?</p>
                     <div class="options">
-                        <label><input type="radio" name="q4" value="yes"> Yes</label>
-                        <label><input type="radio" name="q4" value="no"> No</label>
+                        <label><input type="radio" name="q4" value="Yes"> Yes</label>
+                        <label><input type="radio" name="q4" value="No"> No</label>
                     </div>
                 </div>
                 <div class="question">
-                    <p>Have you ever had trouble maintaining focus?</p>
+                    <p>Have you ever received treatment or therapy for mental health issues?</p>
                     <div class="options">
-                        <label><input type="radio" name="q5" value="yes"> Yes</label>
-                        <label><input type="radio" name="q5" value="no"> No</label>
+                        <label><input type="radio" name="q5" value="Yes"> Yes</label>
+                        <label><input type="radio" name="q5" value="No"> No</label>
                     </div>
                 </div>
                 <div class="question">
-                    <p>Do you have any trouble sleeping?</p>
+                    <p>How many days do you spend indoors?</p>
                     <div class="options">
-                        <label><input type="radio" name="q6" value="yes"> Yes</label>
-                        <label><input type="radio" name="q6" value="no"> No</label>
+                        <label><input type="radio" name="q6" value="1-14 days"> 1-14 days</label>
+                        <label><input type="radio" name="q6" value="Go out Every day"> Go out Every day</label>
+                        <label><input type="radio" name="q6" value="More than 2 months"> More than 2 months</label>
+                        <label><input type="radio" name="q6" value="15-30 days"> 15-30 days</label>
+                        <label><input type="radio" name="q6" value="31-60 days"> 31-60 days</label>
                     </div>
                 </div>
                 <div class="question">
-                    <p>Have you ever had a feeling of hopelessness?</p>
+                    <p>Is your stress level increasing?</p>
                     <div class="options">
-                        <label><input type="radio" name="q7" value="yes"> Yes</label>
-                        <label><input type="radio" name="q7" value="no"> No</label>
+                        <label><input type="radio" name="q7" value="Yes"> Yes</label>
+                        <label><input type="radio" name="q7" value="No"> No</label>
+                        <label><input type="radio" name="q7" value="Maybe"> Maybe</label>
                     </div>
                 </div>
                 <div class="question">
-                    <p>Have you ever had outbursts of anger?</p>
+                    <p>Have you experienced changes in your habits recently?</p>
                     <div class="options">
-                        <label><input type="radio" name="q8" value="yes"> Yes</label>
-                        <label><input type="radio" name="q8" value="no"> No</label>
+                        <label><input type="radio" name="q8" value="Yes"> Yes</label>
+                        <label><input type="radio" name="q8" value="No"> No</label>
+                        <label><input type="radio" name="q8" value="Maybe"> Maybe</label>
                     </div>
                 </div>
                 <div class="question">
-                    <p>Have you ever had suicidal thoughts?</p>
+                    <p>Do you have a history of mental health issues?</p>
                     <div class="options">
-                        <label><input type="radio" name="q9" value="yes"> Yes</label>
-                        <label><input type="radio" name="q9" value="no"> No</label>
+                        <label><input type="radio" name="q9" value="Yes"> Yes</label>
+                        <label><input type="radio" name="q9" value="No"> No</label>
+                        <label><input type="radio" name="q9" value="Maybe"> Maybe</label>
                     </div>
                 </div>
                 <div class="question">
-                    <p>Have you constantly felt tired?</p>
+                    <p>Describe your mood swings</p>
                     <div class="options">
-                        <label><input type="radio" name="q10" value="yes"> Yes</label>
-                        <label><input type="radio" name="q10" value="no"> No</label>
+                        <label><input type="radio" name="q10" value="High"> High</label>
+                        <label><input type="radio" name="q10" value="Medium"> Medium</label>
+                        <label><input type="radio" name="q10" value="Low"> Low</label>
                     </div>
                 </div>
                 <div class="question">
-                    <p>Do you find yourself getting reminded of stressful memories?</p>
+                    <p>Do you have difficulty coping?</p>
                     <div class="options">
-                        <label><input type="radio" name="q11" value="yes"> Yes</label>
-                        <label><input type="radio" name="q11" value="no"> No</label>
+                        <label><input type="radio" name="q11" value="Yes"> Yes</label>
+                        <label><input type="radio" name="q11" value="No"> No</label>
                     </div>
                 </div>
                 <div class="question">
-                    <p>Have you had nightmares?</p>
+                    <p>Are you interested in completing tasks?</p>
                     <div class="options">
-                        <label><input type="radio" name="q12" value="yes"> Yes</label>
-                        <label><input type="radio" name="q12" value="no"> No</label>
+                        <label><input type="radio" name="q12" value="Yes"> Yes</label>
+                        <label><input type="radio" name="q12" value="No"> No</label>
+                        <label><input type="radio" name="q12" value="Maybe"> Maybe</label>
                     </div>
                 </div>
                 <div class="question">
-                    <p>Have you ever had trouble concentrating?</p>
+                    <p>Do you struggle to maintain social relationships?</p>
                     <div class="options">
-                        <label><input type="radio" name="q13" value="yes"> Yes</label>
-                        <label><input type="radio" name="q13" value="no"> No</label>
+                        <label><input type="radio" name="q13" value="Yes"> Yes</label>
+                        <label><input type="radio" name="q13" value="No"> No</label>
+                        <label><input type="radio" name="q13" value="Maybe"> Maybe</label>
                     </div>
                 </div>
                 <div class="question">
-                    <p>Any trouble experienced during work?</p>
+                    <p>Are you open to a mental health interview?</p>
                     <div class="options">
-                        <label><input type="radio" name="q14" value="yes"> Yes</label>
-                        <label><input type="radio" name="q14" value="no"> No</label>
+                        <label><input type="radio" name="q14" value="Yes"> Yes</label>
+                        <label><input type="radio" name="q14" value="No"> No</label>
+                        <label><input type="radio" name="q14" value="Maybe"> Maybe</label>
                     </div>
                 </div>
                 <div class="question">
-                    <p>Have you observed any changes in your eating habits?</p>
+                    <p>Are you aware of mental health care options?</p>
                     <div class="options">
-                        <label><input type="radio" name="q15" value="yes"> Yes</label>
-                        <label><input type="radio" name="q15" value="no"> No</label>
-                    </div>
-                </div>
-                <div class="question">
-                    <p>Do you have a close friend?</p>
-                    <div class="options">
-                        <label><input type="radio" name="q16" value="yes"> Yes</label>
-                        <label><input type="radio" name="q16" value="no"> No</label>
-                    </div>
-                </div>
-                <div class="question">
-                    <p>Are you addicted to Social Media?</p>
-                    <div class="options">
-                        <label><input type="radio" name="q17" value="yes"> Yes</label>
-                        <label><input type="radio" name="q17" value="no"> No</label>
-                    </div>
-                </div>
-                <div class="question">
-                    <p>Have you experienced a gain in weight?</p>
-                    <div class="options">
-                        <label><input type="radio" name="q18" value="yes"> Yes</label>
-                        <label><input type="radio" name="q18" value="no"> No</label>
-                    </div>
-                </div>
-                <div class="question">
-                    <p>Do you have any material possessions?</p>
-                    <div class="options">
-                        <label><input type="radio" name="q19" value="yes"> Yes</label>
-                        <label><input type="radio" name="q19" value="no"> No</label>
-                    </div>
-                </div>
-                <div class="question">
-                    <p>Have you ever overreacted in a situation?</p>
-                    <div class="options">
-                        <label><input type="radio" name="q20" value="yes"> Yes</label>
-                        <label><input type="radio" name="q20" value="no"> No</label>
-                    </div>
-                </div>
-                <div class="question">
-                    <p>Do you consider yourself as an introvert?</p>
-                    <div class="options">
-                        <label><input type="radio" name="q21" value="yes"> Yes</label>
-                        <label><input type="radio" name="q21" value="no"> No</label>
-                    </div>
-                </div>
-                <div class="question">
-                    <p>Do you tend to avoid people or activities you're uncomfortable with?</p>
-                    <div class="options">
-                        <label><input type="radio" name="q22" value="yes"> Yes</label>
-                        <label><input type="radio" name="q22" value="no"> No</label>
-                    </div>
-                </div>
-                <div class="question">
-                    <p>Do you often feel negative about yourself?</p>
-                    <div class="options">
-                        <label><input type="radio" name="q23" value="yes"> Yes</label>
-                        <label><input type="radio" name="q23" value="no"> No</label>
-                    </div>
-                </div>
-                <div class="question">
-                    <p>Do you often find yourself blaming yourself?</p>
-                    <div class="options">
-                        <label><input type="radio" name="q24" value="yes"> Yes</label>
-                        <label><input type="radio" name="q24" value="no"> No</label>
+                        <label><input type="radio" name="q15" value="Yes"> Yes</label>
+                        <label><input type="radio" name="q15" value="No"> No</label>
+                        <label><input type="radio" name="q15" value="Maybe"> Maybe</label>
                     </div>
                 </div>
                 <button type="submit" class="continue-btn">Continue</button>
             </form>
         </div>
     </div>
+</body>
+</html> -->
+<div class="content">
+    <div class="container">
+        <form method="POST" action="{{ url_for('questionnaire') }}">
+            {% for question in questions %}
+            <div class="question">
+                <p>{{ question.question }}</p>
+                <div class="options">
+                    {% for option in question.options %}
+                    <label><input type="radio" name="{{ question.question }}" value="{{ option }}" required> {{ option }}</label>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+            <button type="submit" class="continue-btn">Continue</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>
