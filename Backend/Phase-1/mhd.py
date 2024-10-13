@@ -1,10 +1,6 @@
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import f1_score, accuracy_score, confusion_matrix
-
-# Declare output2 globally so it's accessible
-output2 = None
 
 def load_and_train_model():
     try:
@@ -16,21 +12,12 @@ def load_and_train_model():
         print("Error: 'MHD_Feature_Engineered.csv' not found. Please check the directory.")
         return None
 
-    # Train the logistic regression model
     reg = LogisticRegression()
     X_train, X_test, y_train, y_test = train_test_split(X_new, y_new, test_size=0.2, random_state=42)
     reg.fit(X_train, y_train)
 
-    # Evaluate the model
-    y_pred = reg.predict(X_test)
-    # print(f"Model F1 Score: {f1_score(y_test, y_pred)}")
-    # print(f"Model Accuracy: {accuracy_score(y_test, y_pred)}")
-    # print("Confusion Matrix:")
-    # print(confusion_matrix(y_test, y_pred))
-
     return reg
 
-# Mappings for responses
 mappings = {
     'Gender': {'Female': 2, 'Male': 1},
     'Occupation': {'Corporate': 2, 'Student': 3, 'Business': 2, 'Housewife': 3, 'Other': 1},
@@ -48,19 +35,6 @@ mappings = {
     'mental_health_interview': {'Yes': 3, 'Maybe': 2, 'No': 1},
     'care_options': {'Yes': 1, 'Not sure': 2, 'No': 3}
 }
-
-def ask_question(question, options):
-    """Ask a question and validate the user input."""
-    options_lower = [opt.lower() for opt in options]  # Convert options to lowercase for comparison
-    print(f"{question} (Options: {', '.join(options)})")
-
-    while True:
-        response = input().strip().lower()  # User input in lowercase for smooth comparison
-        if response in options_lower:
-            # Return the original case-sensitive option for mapping
-            return options[options_lower.index(response)]
-        else:
-            print(f"Invalid input. Please choose from: {', '.join(options)}")
 
 # List of questions with options
 questions = [
@@ -83,40 +57,20 @@ questions = [
 ]
 
 def map_responses(responses):
-    """Map user responses to numerical values using the mappings dictionary."""
     mapped_input = []
     for key, response in zip(mappings.keys(), responses):
-        mapped_input.append(mappings[key].get(response, 1))  # Default to 1 if not found
+        mapped_input.append(mappings[key].get(response, 1))
     return mapped_input
 
-def classify_target(model, responses):
-    """Classify the target based on the user's responses."""
-    global output2
-    try:
-        mapped_input = map_responses(responses)
-        prediction = model.predict([mapped_input])
-        output2 = prediction[0]  # Set global output2
-        print(f"Prediction: {output2}")
-    except Exception as e:
-        print(f"An error occurred during classification: {e}")
-        output2 = None  # Ensure output2 is set to None in case of error
+model = load_and_train_model()
 
-
-def get_output2():
-    """Return the value of output2."""
-    if output2 is None:
-        print("Run the questionnaire first to set output2.")
-    return output2
-
-def run_questionnaire():
-    """Run the questionnaire to generate output2."""
-    model = load_and_train_model()
+def get_output2(responses):
     if model is None:
-        return
+        return None
+    
+    mapped_input = map_responses(responses)
+    prediction = model.predict([mapped_input])
+    return int(prediction[0])
 
-    print("\nPlease answer the following questions:\n")
-    responses = [ask_question(q['question'], q['options']) for q in questions]
-
-    print("Your responses:", responses)
-    classify_target(model, responses)
-
+def get_questions():
+    return questions
