@@ -3,88 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mental Illness Detection</title>
+    <title>Mental Illness Detection - How Are You Feeling?</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #f0f4f8;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(216, 241, 230, 0.46) 0%, rgba(216, 241, 230, 0.46) 50%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.28) 0%, rgba(59, 130, 246, 0.28) 40%, transparent 40%);
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            color: #333;
         }
-        .header {
-            background-color: white;
-            padding: 20px;
+        header {
+            background-color: #3b82f6;
+            color: white;
+            padding: 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        .logo {
-            font-size: 20px;
-            font-weight: bold;
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
         }
-        .home-btn {
-            background-color: #007bff;
+        .home-link {
+            background-color: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            text-decoration: none;
             color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
-        .content {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 20px;
+        .home-link:hover {
+            background-color: rgba(255,255,255,0.3);
+        }
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+            padding: 2rem;
+        }
+        .form-container {
             background-color: white;
+            padding: 2.5rem;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
         }
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #2c5282;
         }
         textarea {
-            width: 100%;
-            min-height: 30px;
-            padding: 10px;
-            border: 1px solid #ddd;
+            width: 94.5%;
+            height: 150px;
+            padding: 1rem;
+            border: 1px solid #cbd5e0;
             border-radius: 5px;
             resize: vertical;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
         }
-        .continue-btn {
-            background-color: #28a745;
+        textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #3b82f6;
             color: white;
             border: none;
-            padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
             margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        button:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="logo">Mental Illness Detection</div>
+    <header>
+        <h1>Mental Illness Detection</h1>
         <div class="nav-links">
-            <a href="{{ url_for('home') }}" class="home-link">Home</a>
+            <a href="/" class="home-link">Home</a>
         </div>
-    </div>
-    <div class="content">
-        <form method="POST" action="{{ url_for('abstract') }}">
-            <label for="feelings">How have you been feeling lately?</label>
-            <textarea id="feelings" name="user_input" rows="4" placeholder="Describe your feelings..."></textarea>
-            <button type="submit" class="continue-btn">Continue</button>
-        </form>
-    </div>
-    <script>
-        document.querySelector('textarea').addEventListener('input', function () {
-            this.style.height = 'auto';
-            this.style.height = (this.scrollHeight) + 'px';
-        });
-    </script>
+    </header>
+    <main>
+        <div class="form-container">
+            <h2>How have you been feeling lately?</h2>
+            <form action="/abstract" method="POST">
+                <textarea name="user_input" placeholder="Describe your feelings..."></textarea>
+                <button type="submit">Continue</button>
+            </form>
+        </div>
+    </main>
 </body>
 </html>
