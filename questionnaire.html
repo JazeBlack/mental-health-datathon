@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Questionnaire</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f0f4f8;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(216, 241, 230, 0.46) 0%, rgba(216, 241, 230, 0.46) 50%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.28) 0%, rgba(59, 130, 246, 0.28) 40%, transparent 40%);
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            color: #333;
+        }
+        header {
+            background-color: #3b82f6;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        .home-link {
+            background-color: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .home-link:hover {
+            background-color: rgba(255,255,255,0.3);
+        }
+        main {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .container {
+            background: #fff;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 1000px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin: 0 auto;
+        }
+        .progress {
+            display: flex;
+            justify-content: space-between; /* Evenly space the bubbles */
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            overflow-x: auto;
+        }
+        .progress div {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: #e2e8f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            margin-right: 15px;
+            flex-shrink: 0;
+            transition: background-color 0.3s ease;
+        }
+        .progress .active {
+            background-color: #3b82f6;
+            color: #fff;
+        }
+        .question {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #2c5282;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+        }
+        .options label {
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .options label:hover {
+            color: #3b82f6;
+        }
+        .options input {
+            margin-right: 10px;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3b82f6;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        button:hover:not(:disabled) {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+        }
+        button:disabled {
+            background-color: #a0aec0;
+            cursor: not-allowed;
+        }
+        .error {
+            color: #e53e3e;
+            margin-top: 10px;
+            display: none;
+        }
+        #questionCount {
+            text-align: center;
+            margin-top: 20px;
+            color: #4a5568;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mental Illness Detection</h1>
+        <a href="/" class="home-link">Home</a>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="progress" id="progressContainer">
+                <!-- Dynamically added progress bubbles will go here -->
+            </div>
+
+            <form id="questionnaireForm" method="POST" action="/questionnaire">
+                <div class="question" id="questionText">Enter your gender</div>
+                <div class="options" id="optionsContainer">
+                    <label><input type="radio" name="option" value="Male"> Male</label>
+                    <label><input type="radio" name="option" value="Female"> Female</label>
+                </div>
+
+                <div class="navigation">
+                    <button type="button" id="prevButton" disabled>Previous</button>
+                    <button type="button" id="nextButton">Next</button>
+                </div>
+
+                <div id="questionCount">Question 1 of 15</div>
+                <div class="error" id="errorMessage">Please fill all questions before proceeding.</div>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        const questions = [
+            { "question": "Enter your gender", "options": ["Male", "Female"] },
+            { "question": "What is your occupation?", "options": ["Corporate", "Student", "Business", "Housewife", "Other"] },
+            { "question": "Are you self-employed?", "options": ["Yes", "No"] },
+            { "question": "Does your family have a history of mental health issues?", "options": ["Yes", "No"] },
+            { "question": "Have you ever received treatment or therapy for mental health issues?", "options": ["Yes", "No"] },
+            { "question": "How many days do you spend indoors?", "options": ["1-14 days", "Go out Every day", "More than 2 months", "15-30 days", "31-60 days"] },
+            { "question": "Is your stress level increasing?", "options": ["Yes", "No", "Maybe"] },
+            { "question": "Have you experienced changes in your habits recently?", "options": ["Yes", "No", "Maybe"] },
+            { "question": "Do you have a history of mental health issues?", "options": ["Yes", "No", "Maybe"] },
+            { "question": "Describe your mood swings", "options": ["High", "Medium", "Low"] },
+            { "question": "Do you have difficulty coping?", "options": ["Yes", "No"] },
+            { "question": "Are you interested in completing tasks?", "options": ["Yes", "No", "Maybe"] },
+            { "question": "Do you struggle to maintain social relationships?", "options": ["Yes", "No", "Maybe"] },
+            { "question": "Are you open to a mental health interview?", "options": ["Yes", "No", "Maybe"] },
+            { "question": "Are you aware of mental health care options?", "options": ["Yes", "No", "Not sure"] }
+        ];
+
+        let currentQuestionIndex = 0;
+        let answers = Array(questions.length).fill(null); // To store the answers of the user
+
+        const questionText = document.getElementById('questionText');
+        const optionsContainer = document.getElementById('optionsContainer');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        const questionCount = document.getElementById('questionCount');
+        const progressContainer = document.getElementById('progressContainer');
+        const errorMessage = document.getElementById('errorMessage');
+
+        function loadQuestion(index) {
+            const currentQuestion = questions[index];
+            questionText.textContent = currentQuestion.question;
+            optionsContainer.innerHTML = '';
+            currentQuestion.options.forEach(option => {
+                const label = document.createElement('label');
+                label.innerHTML = `<input type="radio" name="question${index}" value="${option}" ${answers[index] === option ? 'checked' : ''}> ${option}`;
+                optionsContainer.appendChild(label);
+            });
+
+            questionCount.textContent = `Question ${index + 1} of ${questions.length}`;
+            prevButton.disabled = index === 0;
+            updateProgress(index + 1);
+
+            if (index === questions.length - 1) {
+                nextButton.textContent = 'Submit';
+                nextButton.onclick = submitForm;
+            } else {
+                nextButton.textContent = 'Next';
+                nextButton.onclick = nextQuestion;
+            }
+        }
+
+        function nextQuestion() {
+            const selectedOption = document.querySelector(`input[name="question${currentQuestionIndex}"]:checked`);
+            if (!selectedOption) {
+                errorMessage.style.display = 'block';
+                return;
+            }
+            errorMessage.style.display = 'none'; // Hide error message if an option is selected
+            answers[currentQuestionIndex] = selectedOption.value; // Store the selected answer
+
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+            }
+        }
+
+        function submitForm() {
+            const selectedOption = document.querySelector(`input[name="question${currentQuestionIndex}"]:checked`);
+            if (!selectedOption) {
+                errorMessage.style.display = 'block';
+                return;
+            }
+            answers[currentQuestionIndex] = selectedOption.value; 
+
+            // Check if all questions are answered
+            const allQuestionsAnswered = answers.every(answer => answer !== null);
+            if (!allQuestionsAnswered) {
+                errorMessage.style.display = 'block';
+            } else {
+                let formData = {};
+                for (let i = 0; i < 15; i++) {
+                    formData['question'+i] = answers[i];
+                }
+
+                // Send the dictionary as JSON in a POST request
+                fetch('/questionnaire', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)  // Send the collected responses as a JSON object
+                })
+                .then(response => response.json())
+                .then(result => {
+                    // Handle the redirect to the result page
+                    window.location.href = result.redirect_url;
+                })
+                .catch(error => console.error('Error:', error));
+                        }
+        }
+
+        function updateProgress(currentStep) {
+            progressContainer.innerHTML = '';
+            for (let i = 1; i <= questions.length; i++) {
+                const bubble = document.createElement('div');
+                bubble.textContent = i;
+                if (i <= currentStep) {
+                    bubble.classList.add('active');
+                }
+                progressContainer.appendChild(bubble);
+            }
+        }
+
+        prevButton.addEventListener('click', () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+            }
+        });
+
+        loadQuestion(currentQuestionIndex);
+    </script>
+</body>
+</html>
