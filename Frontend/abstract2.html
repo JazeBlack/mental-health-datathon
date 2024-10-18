@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Abstract Questionnaire</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(216, 241, 230, 0.46) 0%, rgba(216, 241, 230, 0.46) 50%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.28) 0%, rgba(59, 130, 246, 0.28) 40%, transparent 40%);
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            color: #333;
+        }
+        header {
+            background-color: #3b82f6;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        .home-link {
+            background-color: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .home-link:hover {
+            background-color: rgba(255,255,255,0.3);
+        }
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+            padding: 2rem;
+        }
+        .form-container {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 800px;
+        }
+        h2 {
+            text-align: left;
+            margin-bottom: 1.5rem;
+            color: #2c5282;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+        textarea {
+            width: 94.5%;
+            height: 150px;
+            padding: 1rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 5px;
+            resize: vertical;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        button {
+            padding: 12px;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        button:hover:not(:disabled) {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+        }
+        button:disabled {
+            background-color: #a0aec0;
+            cursor: not-allowed;
+        }
+        .progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            overflow-x: auto;
+        }
+        .progress div {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: #e2e8f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            margin-right: 15px;
+            flex-shrink: 0;
+            transition: background-color 0.3s ease;
+        }
+        .progress .active {
+            background-color: #3b82f6;
+            color: #fff;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        #questionCount {
+            text-align: center;
+            margin-top: 20px;
+            color: #4a5568;
+        }
+        #wordCount {
+            text-align: right;
+            margin-top: 5px;
+            color: #718096;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mental Health Abstract Questionnaire</h1>
+        <a href="/" class="home-link">Home</a>
+    </header>
+    <main>
+        <div class="form-container">
+            <div class="progress" id="progressContainer"></div>
+            <form id="questionnaireForm">
+                <h2 id="questionText"></h2>
+                <textarea id="answerText" name="user_input" placeholder="Type your answer here (minimum 30 words)"></textarea>
+                <div id="wordCount">Words: 0</div>
+                <div class="button-container">
+                    <button type="button" id="prevButton" disabled>Previous</button>
+                    <button type="button" id="nextButton">Next</button>
+                    <button type="button" id="submitButton" style="display: none;">Submit</button>
+                </div>
+                <div id="questionCount">Question 1 of 5</div>
+            </form>
+            <div id="outputContainer" style="display: none;">
+                <h2>Your Responses:</h2>
+                <ul id="outputList"></ul>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const questions = [
+            "Please describe how you typically manage challenges or difficult situations in your daily life. Are there instances when you find these circumstances overwhelming or challenging to handle?",
+            "Could you provide an overview of your recent mood and energy levels? Have you observed any changes in your capacity to derive enjoyment from activities that you previously found pleasurable?",
+            "Have you encountered moments where you experience excessive worry or fear about matters that might seem insignificant to others? How do these emotions impact your day-to-day functioning?",
+            "How would you characterize your relationships with others? Are there any recurring patterns or conflicts in your interactions with people or in how you perceive yourself within these relationships?",
+            "Have you ever experienced periods of unusually elevated mood, energy, or extreme confidence, followed by episodes of feeling down, hopeless, or exhausted? If so, could you describe these experiences in detail?"
+        ];
+
+        let currentQuestionIndex = 0;
+        let answers = Array(questions.length).fill(null);
+
+        const questionText = document.getElementById('questionText');
+        const answerText = document.getElementById('answerText');
+        const nextButton = document.getElementById('nextButton');
+        const prevButton = document.getElementById('prevButton');
+        const questionCount = document.getElementById('questionCount');
+        const progressContainer = document.getElementById('progressContainer');
+        const wordCount = document.getElementById('wordCount');
+        const submitButton = document.getElementById('submitButton');
+        const outputContainer = document.getElementById('outputContainer');
+        const outputList = document.getElementById('outputList');
+
+        function loadQuestion(index) {
+            questionText.textContent = questions[index];
+            answerText.value = answers[index] || '';
+            questionCount.textContent = `Question ${index + 1} of ${questions.length}`;
+            updateProgress(index + 1);
+            updateWordCount();
+
+            prevButton.disabled = index === 0;
+
+            if (index === questions.length - 1) {
+                nextButton.style.display = 'none';
+                submitButton.style.display = 'inline-block';
+            } else {
+                nextButton.style.display = 'inline-block';
+                submitButton.style.display = 'none';
+            }
+        }
+
+        function updateProgress(currentStep) {
+            progressContainer.innerHTML = '';
+            for (let i = 1; i <= questions.length; i++) {
+                const bubble = document.createElement('div');
+                bubble.textContent = i;
+                if (i <= currentStep) {
+                    bubble.classList.add('active');
+                }
+                progressContainer.appendChild(bubble);
+            }
+        }
+
+        function updateWordCount() {
+            const words = answerText.value.trim().split(/\s+/).filter(word => word.length > 0).length;
+            wordCount.textContent = `Words: ${words}`;
+        }
+
+        function nextQuestion() {
+            answers[currentQuestionIndex] = answerText.value;
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+            }
+        }
+
+        function prevQuestion() {
+            answers[currentQuestionIndex] = answerText.value;
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion(currentQuestionIndex);
+            }
+        }
+
+        function submitForm() {
+            // Validate that at least three responses have 30 words or more
+            answers[currentQuestionIndex] = answerText.value;
+            const validAnswers = answers.filter(answer => answer && answer.trim().split(/\s+/).length >= 30);
+
+            if (validAnswers.length >= 3) {
+                // Create a JSON object to send to Flask
+                const data = { user_input: answers };
+
+                // Use Fetch API to send data via POST request
+                fetch('/abstract2', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data) // Convert the answers array into JSON
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.redirect_url) {
+                        // Redirect to the provided URL
+                        window.location.href = data.redirect_url;
+                    } else {
+                        alert('Something went wrong with the submission. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            } else {
+                alert('Please ensure at least three responses have 30 words or more.');
+            }
+        }
+
+        nextButton.addEventListener('click', nextQuestion);
+        prevButton.addEventListener('click', prevQuestion);
+        submitButton.addEventListener('click', submitForm);
+        answerText.addEventListener('input', updateWordCount);
+
+        loadQuestion(currentQuestionIndex);
+    </script>
+</body>
+</html>
