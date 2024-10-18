@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment Results - Mental Illness Detection</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(216, 241, 230, 0.46) 0%, rgba(216, 241, 230, 0.46) 50%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.28) 0%, rgba(59, 130, 246, 0.28) 40%, transparent 40%);
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background-color: #3b82f6;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .home-link {
+            background-color: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .home-link:hover {
+            background-color: rgba(255,255,255,0.3);
+        }
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .content-box {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 2rem;
+            max-width: 500px;
+            width: 100%;
+        }
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #2c5282;
+        }
+        .result-text {
+            text-align: center;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            color: #4a5568;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+        }
+        .continue-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            text-align: center;
+            font-size: 1rem;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .continue-button:hover {
+            background-color: #2563eb;
+        }
+        footer {
+            background-color: #3b82f6;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: auto;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mental Illness Detection</h1>
+        <div class="nav-links">
+            <a href="/" class="home-link">Home</a>
+        </div>
+    </header>
+    <main>
+        <div class="content-box">
+            <h2>Assessment Results</h2>
+            <p class="result-text">Based on our evaluation, there are indications that you may be experiencing symptoms associated with a mental health condition.</p>
+            <p class="result-text">We recommend that you continue the assessment to help identify the specific mental health condition you might be experiencing.</p>
+            <div class="button-group">
+                <button class="continue-button" onclick="window.location.href='abstract2'">Continue</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Mental Illness Detection. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+</body>
+</html>
