@@ -4,9 +4,12 @@ from datetime import datetime
 from abstract import get_output1
 from mhd import get_output2, get_questions
 from final_output import calculate_final_output
+from multiclass_abstract import predict_user_input
+from collections import Counter
 
 app = Flask(__name__)
 predictions = []
+response_storage = []
 
 CSV_FILE = 'user_data.csv'
 
@@ -84,10 +87,54 @@ def questionnaire():
 @app.route('/result/<outcome>')
 def result(outcome):
     if outcome == '1':
-        return f"Based on our assessment, you may benefit from speaking with a mental health professional.\nOutput 1: {predictions[-3]}\nOutput 2: {predictions[-2]}\nFinal Output: {predictions[-1]}"
+        return redirect(url_for('issue_detected'))
     else:
         return redirect(url_for('no_issue'))
     
+@app.route('/issue_detected')
+def issue_detected():
+    return render_template('issue_detected.html')
+
+@app.route('/abstract2', methods=['GET', 'POST'])
+def abstract2():
+    global response_storage  # Use the global response storage to collect inputs
+    
+    if request.method == 'POST':
+        # Parse JSON data sent by the client
+        data = request.get_json()
+        user_responses = data.get('user_input', [])
+        
+        if not user_responses or len(user_responses) < 3:
+            return jsonify({'error': 'At least three valid responses are required'}), 400
+        
+        response_storage.extend(user_responses)  # Store all the responses
+
+        if len(response_storage) >= 3:  # Once we have at least 3 responses
+            predictions = []
+            
+            # Loop over the responses, make predictions, and store them
+            for response in response_storage:
+                prediction = predict_user_input(response)  # Use the predictor
+                predictions.append(prediction[0])  # Assuming prediction returns a list, we take the first element
+            
+            # Find the mode of the predictions (most common prediction)
+            prediction_counts = Counter(predictions)
+            final_prediction = prediction_counts.most_common(1)[0][0]  # Get the most common prediction
+            
+            # Clear the storage after prediction
+            response_storage = []  # Reset the storage for new inputs
+            
+            # Return a JSON response with the redirect URL
+            return jsonify({'redirect_url': url_for('prediction_result', result=final_prediction)})
+        
+        return jsonify({'error': 'Failed to process the inputs.'}), 400
+    
+    return render_template('abstract2.html')
+
+# Placeholder route for displaying the final prediction result
+@app.route('/prediction_result/<result>')
+def prediction_result(result):
+    return f"<h1>Your predicted disorder is: {result}</h1>"
 
 @app.route('/no_issue')
 def no_issue():
