@@ -1,4 +1,4 @@
-## Mental Illness Detection using AI/ML techniques.
+# Mental Illness Detection using AI/ML techniques.
 
 ## Overview
 This project aims to provide early detection and classification of potential mental health issues using Natural Language Processing (NLP) and Machine Learning models. The system is divided into **two phases**:
