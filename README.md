@@ -13,7 +13,7 @@ The goal is to raise awareness, provide early warnings, and encourage individual
 - [Features](#features)
 - [Datasets Feature Engineering](#datasets-feature-engineering)
 - [Data Preprocessing](#data-preprocessing)
-- [Data Visualization](#visualization)
+- [Data Visualization](#data-visualization)
 - [Model Accuracy](#model-accuracy)
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
@@ -46,6 +46,9 @@ The goal is to raise awareness, provide early warnings, and encourage individual
     For over-represented classes, we used downsampling to reduce their size. This balanced the dataset, ensuring that our XGBoost model could learn effectively from all classes and improve prediction accuracy.
 ---
 ## Data Visualization
+- **Phase-1**
+  -   ![WhatsApp Image 2024-10-19 at 13 52 29_304e56b6](https://github.com/user-attachments/assets/4886ae5f-f038-4a4b-8354-c9967e9406c8)
+
 ---
 ## Data Preprocessing
 - We employed a series of data preprocessing techniques to prepare the text data for model training and analysis:
@@ -75,10 +78,10 @@ The goal is to raise awareness, provide early warnings, and encourage individual
     - Seaborn , Matplotlib for Data Visualization
 
 ---
-Contributors
-Abhivanth Sivaprakash
-K Krish Sundaresh
-Bharat Kameswaran
-A Hari
-Sanjeev Krishna S
-Adil Roshan 
+##Contributors
+- Abhivanth Sivaprakash
+- K Krish Sundaresh
+- Bharat Kameswaran
+- A Hari
+- Sanjeev Krishna S
+- Adil Roshan 
