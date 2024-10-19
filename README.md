@@ -16,16 +16,12 @@ The goal is to raise awareness, provide early warnings, and encourage individual
 - [Data Visualization](#data-visualization)
 - [Model Accuracy](#model-accuracy)
 - [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Soft Voting and EWMA](#soft-voting-and-ewma)
+- [Society Impact](#society-impact)
 - [Future Enhancements](#future-enhancements)
 - [Contributing](#contributing)
-- [License](#license)
 
 ---
----
+
 
 ## Features
   - **Phase 1:** We will use an Abstract question like "How have you been feeling lately?", then use NLP techniques to convert the data and use Logistic Regression to identify whether the user has a mental health issue and store it in a variable, then we will ask     
