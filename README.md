@@ -36,8 +36,8 @@ The goal is to raise awareness, provide early warnings, and encourage individual
   - **User-friendly Interaction:** The system prompts the user with relevant questions, and responses are processed efficiently.
 ---
 ## Datasets Feature Engineering
-###Phase 1:** Handling the MCQ Questionnaire Without a Target Column
-  -The Mental Health Disorder MCQ questionnaire did not initially contain a target column, which is essential for applying Logistic Regression. To address this, we leveraged the Upper Confidence Bound (UCB) algorithm, a technique from Reinforcement Learning, to   
+-Phase 1:** Handling the MCQ Questionnaire Without a Target Column
+  - The Mental Health Disorder MCQ questionnaire did not initially contain a target column, which is essential for applying Logistic Regression. To address this, we leveraged the Upper Confidence Bound (UCB) algorithm, a technique from Reinforcement Learning, to   
     perform feature engineering. Using UCB, we identified patterns and structured the responses to create a synthetic target column. This enabled us to apply Logistic Regression on the engineered data, improving the model’s ability to detect mental health issues based
     on the questionnaire.
 ---
