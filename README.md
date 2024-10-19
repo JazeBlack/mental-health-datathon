@@ -16,7 +16,7 @@ The goal is to raise awareness, provide early warnings, and encourage individual
 - [Data Visualization](#data-visualization)
 - [Model Accuracy](#model-accuracy)
 - [Technologies Used](#technologies-used)
-- [Society Impact](#society-impact)
+- [Describing Solution](#desceibing-solution)
 - [Future Enhancements](#future-enhancements)
 - [Contributing](#contributing)
 
@@ -46,7 +46,7 @@ The goal is to raise awareness, provide early warnings, and encourage individual
   
     ![WhatsApp Image 2024-10-19 at 13 52 29_304e56b6](https://github.com/user-attachments/assets/4886ae5f-f038-4a4b-8354-c9967e9406c8)
   
-  - The above graph was plotted after using Upper Confidence Bound Algorithm to feature engineer the target.
+  - The above graph was plotted after using Upper Confidence Bound Algorithm to feature engineer the target, the fixed threshold is 5000.
 
   - Word Cloud for Abstract Question
  
@@ -115,7 +115,27 @@ The goal is to raise awareness, provide early warnings, and encourage individual
     - Seaborn , Matplotlib for Data Visualization
 
 ---
-##Contributors
+## Describing Solution
+  - To help people identify what the patient is dealing with, we have decided to build an efficient AI/ML system that primarily determines the type of mental disorder the person has if any. This system is driven mostly by yes, no, maybe, or not sure type questions. The model also encompasses a component which requires the user to input a paragraph about how they have been feeling lately to further help determine if their mental health is disturbed. The model will have two crucial datasets, one of which is a corpus to help train the model to predict if they have a mental health issue based on their abstract response. The other is a mental health dataset that will help determine if they have an issue or not. Once the issue has been identified,  Another dataset (this dataset has 5 categorical targets one of them being normal) will narrow it down the issue encountered to one of 4 categories (Anxiety, Depression, Loneliness, and Stress) if the person turns out to have an issue. According to DSM-5 (Diagnostic and Statistical Manual of Mental Disorders), only Anxiety and Depression are classified as neurotic mental health disorders. Ultimately, the model serves as a very simple interface to help mediate an interim recommendation on what the person might be experiencing to then help them make an informed decision on seeking external help.
+---
+## Future Enhancements
+  - 1) Collaboration with Experts
+     - Partnership with Mental Health Professionals
+          -  Collaborate with psychiatrists, therapists, and mental health organizations to refine the question sets and recommendations.
+          -  Use their feedback to improve the reliability and acceptance of the system.
+  - 2) Real-time Feedback and Adaptive Questioning
+          -  Develop an intelligent, adaptive questionnaire system that adjusts the next question based on previous answers, making the diagnosis process more personalized and reducing irrelevant questions.
+  - 3) Multi-Lingual Support
+          -  Expand the system’s accessibility by incorporating multi-lingual support using language models that can handle multiple languages, broadening the potential user base globally.
+  - 4) Anonymized Data Sharing for Research
+          - Introduce a feature where users can opt to anonymously share their data with research institutions, helping to improve the system’s datasets and contributing to mental health research.
+  - 5) Mobile Application Development
+          - Scale the system into a user-friendly mobile app, ensuring seamless access, push notifications for follow-ups, and data storage for tracking users’ mental health trends over time.
+  - 6) Integration of Pretrained NLP Models
+          - Incorporate transformer-based models like BERT, RoBERTa, or GPT to better analyze paragraph responses and capture deeper context, improving the text analysis module’s performance and precision.
+
+---
+## Contributors
 - Abhivanth Sivaprakash
 - K Krish Sundaresh
 - Bharat Kameswaran
