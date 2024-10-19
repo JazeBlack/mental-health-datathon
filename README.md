@@ -45,6 +45,8 @@ The goal is to raise awareness, provide early warnings, and encourage individual
   - In Phase 2, the dataset used for multi-class classification had a significant class imbalance problem. To address this, we established a benchmark of 9000 samples per class. For classes with fewer samples, we applied upsampling to increase their representation. 
     For over-represented classes, we used downsampling to reduce their size. This balanced the dataset, ensuring that our XGBoost model could learn effectively from all classes and improve prediction accuracy.
 ---
+## Data Visualization
+---
 ## Data Preprocessing
 - We employed a series of data preprocessing techniques to prepare the text data for model training and analysis:
 
