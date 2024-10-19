@@ -47,8 +47,14 @@ The goal is to raise awareness, provide early warnings, and encourage individual
 ---
 ## Data Visualization
 - **Phase-1**
-  -   ![WhatsApp Image 2024-10-19 at 13 52 29_304e56b6](https://github.com/user-attachments/assets/4886ae5f-f038-4a4b-8354-c9967e9406c8)
-
+    ![WhatsApp Image 2024-10-19 at 13 52 29_304e56b6](https://github.com/user-attachments/assets/4886ae5f-f038-4a4b-8354-c9967e9406c8)
+  - The above graph was plotted after using Upper Confidence Bound Algorithm to feature engineer the target.
+- **Phase-2**
+- Before using sampling techniques to balance the classes
+    ![WhatsApp Image 2024-10-19 at 13 52 28_20cd2dea](https://github.com/user-attachments/assets/d253ec37-9382-43a9-a052-b57fc7011a8d)
+  
+- After using sampling techniques to balance the classes
+    ![WhatsApp Image 2024-10-19 at 13 52 28_be09c3ca](https://github.com/user-attachments/assets/f369270d-36db-4308-a1b0-1dcea9649da3)
 ---
 ## Data Preprocessing
 - We employed a series of data preprocessing techniques to prepare the text data for model training and analysis:
