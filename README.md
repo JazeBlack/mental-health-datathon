@@ -47,15 +47,45 @@ The goal is to raise awareness, provide early warnings, and encourage individual
     ![WhatsApp Image 2024-10-19 at 13 52 29_304e56b6](https://github.com/user-attachments/assets/4886ae5f-f038-4a4b-8354-c9967e9406c8)
   
   - The above graph was plotted after using Upper Confidence Bound Algorithm to feature engineer the target.
+
+  - Word Cloud for Abstract Question
+ 
+  - For output == 0 --> No Issue
+ 
+    ![WhatsApp Image 2024-10-19 at 14 09 01_d9742308](https://github.com/user-attachments/assets/8ffa35f2-ed17-4ffa-885b-2987a388bc1d)
+
+  - For output == 1 --> Issue
+ 
+    ![WhatsApp Image 2024-10-19 at 14 09 02_0ffa9bdb](https://github.com/user-attachments/assets/a4531274-7a5e-4cd2-b5c9-c9ead89423cd)
+
 - **Phase-2**
   
 - Before using sampling techniques to balance the classes
 
-    ![WhatsApp Image 2024-10-19 at 13 52 28_20cd2dea](https://github.com/user-attachments/assets/d253ec37-9382-43a9-a052-b57fc7011a8d)
+  ![WhatsApp Image 2024-10-19 at 13 52 28_20cd2dea](https://github.com/user-attachments/assets/d253ec37-9382-43a9-a052-b57fc7011a8d)
   
 - After using sampling techniques to balance the classes
   
-    ![WhatsApp Image 2024-10-19 at 13 52 28_be09c3ca](https://github.com/user-attachments/assets/f369270d-36db-4308-a1b0-1dcea9649da3)
+  ![WhatsApp Image 2024-10-19 at 13 52 28_be09c3ca](https://github.com/user-attachments/assets/f369270d-36db-4308-a1b0-1dcea9649da3)
+
+- Word Cloud for Abstract Question
+
+- For output == 0 --> Anxiety
+
+  ![WhatsApp Image 2024-10-19 at 14 17 35_a6d87344](https://github.com/user-attachments/assets/1ecf9b8b-be87-433f-9cf4-60398edd515c)
+
+-For output == 1 --> Depression
+
+  ![WhatsApp Image 2024-10-19 at 14 17 35_566c124f](https://github.com/user-attachments/assets/9974d76c-287a-4e7e-a1dd-170c4a7916aa)
+
+- For ouput == 2 --> Suicidal
+
+  ![WhatsApp Image 2024-10-19 at 14 17 35_98dc4294](https://github.com/user-attachments/assets/91d1561c-de71-431d-a9bf-fe540dcc5ba6)
+
+- For output == 3 --> Bipolar
+
+   ![WhatsApp Image 2024-10-19 at 14 17 36_fe0d460c](https://github.com/user-attachments/assets/f1a78474-bcff-4a05-86b6-82ac011de493)
+
 ---
 ## Data Preprocessing
 - We employed a series of data preprocessing techniques to prepare the text data for model training and analysis:
