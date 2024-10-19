@@ -12,11 +12,11 @@ The goal is to raise awareness, provide early warnings, and encourage individual
 ## Table of Contents
 - [Features](#features)
 - [Datasets Feature Engineering](#datasets-feature-engineering)
-- [Data Preprocessing](#data-preprocessing)
 - [Data Visualization](#data-visualization)
+- [Data Preprocessing](#data-preprocessing)
 - [Model Accuracy](#model-accuracy)
 - [Technologies Used](#technologies-used)
-- [Describing Solution](#desceibing-solution)
+- [Describing Solution](#describing-solution)
 - [Future Enhancements](#future-enhancements)
 - [Contributors](#contributors)
 
