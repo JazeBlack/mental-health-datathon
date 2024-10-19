@@ -80,7 +80,7 @@ The goal is to raise awareness, provide early warnings, and encourage individual
 
 - For ouput == 2 --> Suicidal
 
-  ![WhatsApp Image 2024-10-19 at 14 17 35_98dc4294](https://github.com/user-attachments/assets/91d1561c-de71-431d-a9bf-fe540dcc5ba6)
+     ![WhatsApp Image 2024-10-19 at 14 17 35_98dc4294](https://github.com/user-attachments/assets/91d1561c-de71-431d-a9bf-fe540dcc5ba6)
 
 - For output == 3 --> Bipolar
 
