@@ -48,11 +48,11 @@ The goal is to raise awareness, provide early warnings, and encourage individual
 ## Data Preprocessing
 - We employed a series of data preprocessing techniques to prepare the text data for model training and analysis:
 
-  Tokenization: Breaking down the text into individual words (tokens) for easier processing.
-  Stemming: Reducing words to their root forms to eliminate variations (e.g., "running" to "run").
-  Bag of Words (BoW): Converting text data into numerical features based on word frequency to facilitate machine learning.
-  Vectorization: Transforming the tokenized text into feature vectors that the models can process effectively.
-  These preprocessing steps ensured that the data was clean, consistent, and ready for input into our machine learning models.
+  - Tokenization: Breaking down the text into individual words (tokens) for easier processing.
+  - Stemming: Reducing words to their root forms to eliminate variations (e.g., "running" to "run").
+  - Bag of Words (BoW): Converting text data into numerical features based on word frequency to facilitate machine learning.
+  - Vectorization: Transforming the tokenized text into feature vectors that the models can process effectively.
+  - These preprocessing steps ensured that the data was clean, consistent, and ready for input into our machine learning models.
 ---
 ## Model Accuracy
   - Phase 1 Abstract Classification   : 91%
