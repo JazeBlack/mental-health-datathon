@@ -74,7 +74,7 @@ The goal is to raise awareness, provide early warnings, and encourage individual
 
   ![WhatsApp Image 2024-10-19 at 14 17 35_a6d87344](https://github.com/user-attachments/assets/1ecf9b8b-be87-433f-9cf4-60398edd515c)
 
--For output == 1 --> Depression
+- For output == 1 --> Depression
 
   ![WhatsApp Image 2024-10-19 at 14 17 35_566c124f](https://github.com/user-attachments/assets/9974d76c-287a-4e7e-a1dd-170c4a7916aa)
 
