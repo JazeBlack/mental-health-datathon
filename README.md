@@ -11,8 +11,8 @@ The goal is to raise awareness, provide early warnings, and encourage individual
 
 ## Table of Contents
 - [Features](#features)
-- [Datasets Feature Engineering](#featureengineering)
-- [Data Preprocessing](#preprocessing)
+- [Datasets Feature Engineering](#datasets-feature-engineering)
+- [Data Preprocessing](#data-preprocessing)
 - [Data Visualization](#visualization)
 - [Model Accuracy](#model-accuracy)
 - [Technologies Used](#technologies-used)
@@ -40,6 +40,8 @@ The goal is to raise awareness, provide early warnings, and encourage individual
   - The Mental Health Disorder MCQ questionnaire did not initially contain a target column, which is essential for applying Logistic Regression. To address this, we leveraged the Upper Confidence Bound (UCB) algorithm, a technique from Reinforcement Learning, to   
     perform feature engineering. Using UCB, we identified patterns and structured the responses to create a synthetic target column. This enabled us to apply Logistic Regression on the engineered data, improving the model’s ability to detect mental health issues based
     on the questionnaire.
+-Phase 2:** Handling Class Imbalance in Phase 2
+  -In Phase 2, the dataset used for multi-class classification had a significant class imbalance problem. To address this, we established a benchmark of 9000 samples per class. For classes with fewer samples, we applied upsampling to increase their representation. For over-represented classes, we used downsampling to reduce their size. This balanced the dataset, ensuring that our XGBoost model could learn effectively from all classes and improve prediction accuracy.
 ---
 ## Model Accuracy
   - Phase 1 Binary Classification: 91%
