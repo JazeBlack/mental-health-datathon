@@ -11,8 +11,8 @@ The goal is to raise awareness, provide early warnings, and encourage individual
 
 ## Table of Contents
 - [Features](#features)
-- [Datasets Preprocessing](#preprocessing)
-- [Data Preprocessing](#dataprocess)
+- [Datasets Engineering](#featureengineering)
+- [Data Preprocessing](#preprocessing)
 - [Data Visualization](#visualization)
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
@@ -28,17 +28,19 @@ The goal is to raise awareness, provide early warnings, and encourage individual
 ---
 
 ## Features
-- **Phase 1:** We will use an Abstract question like "How have you been feeling lately?", then use NLP techniques to pre Binary classification using Logistic Regression to identify whether the user has a mental health issue.
-- **Phase 2:** Multi-class classification using NLP and XGBoost to detect the specific mental disorder.
+- **Phase 1:** We will use an Abstract question like "How have you been feeling lately?", then use NLP techniques to convert the data and use Logistic Regression to identify whether the user has a mental health issue and store it in a variable, then we will ask MCQ's questions and based on the responses from the user we will classify it as Binary. Then we will use "Exponentially Weighted Moving Average(EWMA)" to assign weights and produce the final output for Phase-1.
+- **Phase 2:** Multi-class classification using NLP and XGBoost to detect the specific mental disorder by asking 5 abstract questions,out of which atleast 3 questions must be answered. We will take this responses and process this text data using NLP techniques and apply multiclass classification to get the probabilities of each class getting classified. Then we are applying "Soft Voting" to combine all the probabilities to produe the final output for Phase-2.
 - **Soft Voting and Exponentially Weighted Moving Average (EWMA):** Used to combine predictions and improve classification accuracy.
 - **User-friendly Interaction:** The system prompts the user with relevant questions, and responses are processed efficiently.
-- **Accuracy:** 
+---
+## Datasets Feature Engineering
+- 
+---
+## Accuracy
   - Phase 1 Binary Classification: 91%
   - Structured Questions (Phase 1): 86%
   - Multi-class Classification (Phase 2): 82%
-
 ---
-
 ## Technologies Used
 - **Programming Languages:** Python, HTML
 - **Machine Learning Models:** Logistic Regression, XGBoost , UCB(Upper Confidence Bound)
