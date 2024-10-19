@@ -11,15 +11,15 @@ The goal is to raise awareness, provide early warnings, and encourage individual
 
 ## Table of Contents
 - [Features](#features)
-- [Datasets Engineering](#featureengineering)
+- [Datasets Feature Engineering](#featureengineering)
 - [Data Preprocessing](#preprocessing)
 - [Data Visualization](#visualization)
+- [Model Accuracy](#model-accuracy)
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
 - [Soft Voting and EWMA](#soft-voting-and-ewma)
-- [Model Accuracy](#model-accuracy)
 - [Future Enhancements](#future-enhancements)
 - [Contributing](#contributing)
 - [License](#license)
@@ -36,7 +36,7 @@ The goal is to raise awareness, provide early warnings, and encourage individual
 ## Datasets Feature Engineering
 - 
 ---
-## Accuracy
+## Model Accuracy
   - Phase 1 Binary Classification: 91%
   - Structured Questions (Phase 1): 86%
   - Multi-class Classification (Phase 2): 82%
