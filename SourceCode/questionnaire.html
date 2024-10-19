@@ -64,7 +64,7 @@
         }
         .progress {
             display: flex;
-            justify-content: space-between; /* Evenly space the bubbles */
+            justify-content: space-between;
             margin-bottom: 20px;
             padding-bottom: 10px;
             overflow-x: auto;
@@ -86,14 +86,20 @@
             background-color: #3b82f6;
             color: #fff;
         }
+        .progress .answered {
+            background-color: #90cdf4;
+            color: #2c5282;
+        }
         .question {
             font-size: 18px;
             margin-bottom: 15px;
             color: #2c5282;
+            transition: opacity 0.3s ease;
         }
         .options {
             display: flex;
             flex-direction: column;
+            transition: opacity 0.3s ease;
         }
         .options label {
             margin-bottom: 10px;
@@ -169,11 +175,10 @@
             </form>
         </div>
     </main>
-
     <script>
         const questions = [
             { "question": "Enter your gender", "options": ["Male", "Female"] },
-            { "question": "What is your occupation?", "options": ["Corporate", "Student", "Business", "Housewife", "Other"] },
+            { "question": "What is your occupation?", "options": ["Corporate", "Student", "Business", "Homemaker", "Other"] },
             { "question": "Are you self-employed?", "options": ["Yes", "No"] },
             { "question": "Does your family have a history of mental health issues?", "options": ["Yes", "No"] },
             { "question": "Have you ever received treatment or therapy for mental health issues?", "options": ["Yes", "No"] },
@@ -188,10 +193,10 @@
             { "question": "Are you open to a mental health interview?", "options": ["Yes", "No", "Maybe"] },
             { "question": "Are you aware of mental health care options?", "options": ["Yes", "No", "Not sure"] }
         ];
-
+    
         let currentQuestionIndex = 0;
-        let answers = Array(questions.length).fill(null); // To store the answers of the user
-
+        let answers = Array(questions.length).fill(null);
+    
         const questionText = document.getElementById('questionText');
         const optionsContainer = document.getElementById('optionsContainer');
         const prevButton = document.getElementById('prevButton');
@@ -199,21 +204,31 @@
         const questionCount = document.getElementById('questionCount');
         const progressContainer = document.getElementById('progressContainer');
         const errorMessage = document.getElementById('errorMessage');
-
+    
         function loadQuestion(index) {
             const currentQuestion = questions[index];
             questionText.textContent = currentQuestion.question;
             optionsContainer.innerHTML = '';
+    
             currentQuestion.options.forEach(option => {
                 const label = document.createElement('label');
                 label.innerHTML = `<input type="radio" name="question${index}" value="${option}" ${answers[index] === option ? 'checked' : ''}> ${option}`;
                 optionsContainer.appendChild(label);
+    
+                // Add event listener to radio buttons
+                const radioButton = label.querySelector('input');
+                radioButton.addEventListener('change', () => {
+                    if (index < questions.length - 1) {
+                        answers[index] = radioButton.value; // Save the answer
+                        nextQuestion(); // Move to the next question
+                    }
+                });
             });
-
+    
             questionCount.textContent = `Question ${index + 1} of ${questions.length}`;
             prevButton.disabled = index === 0;
             updateProgress(index + 1);
-
+    
             if (index === questions.length - 1) {
                 nextButton.textContent = 'Submit';
                 nextButton.onclick = submitForm;
@@ -221,77 +236,84 @@
                 nextButton.textContent = 'Next';
                 nextButton.onclick = nextQuestion;
             }
+    
+            // Add fade-in effect
+            questionText.style.opacity = 0;
+            optionsContainer.style.opacity = 0;
+            setTimeout(() => {
+                questionText.style.opacity = 1;
+                optionsContainer.style.opacity = 1;
+            }, 50);
         }
-
+    
         function nextQuestion() {
             const selectedOption = document.querySelector(`input[name="question${currentQuestionIndex}"]:checked`);
-            if (!selectedOption) {
-                errorMessage.style.display = 'block';
-                return;
+            if (selectedOption) {
+                answers[currentQuestionIndex] = selectedOption.value;
             }
-            errorMessage.style.display = 'none'; // Hide error message if an option is selected
-            answers[currentQuestionIndex] = selectedOption.value; // Store the selected answer
-
+            errorMessage.style.display = 'none';
+    
             if (currentQuestionIndex < questions.length - 1) {
                 currentQuestionIndex++;
                 loadQuestion(currentQuestionIndex);
             }
         }
-
+    
         function submitForm() {
             const selectedOption = document.querySelector(`input[name="question${currentQuestionIndex}"]:checked`);
-            if (!selectedOption) {
-                errorMessage.style.display = 'block';
-                return;
+            if (selectedOption) {
+                answers[currentQuestionIndex] = selectedOption.value;
             }
-            answers[currentQuestionIndex] = selectedOption.value; 
-
+    
             // Check if all questions are answered
             const allQuestionsAnswered = answers.every(answer => answer !== null);
             if (!allQuestionsAnswered) {
                 errorMessage.style.display = 'block';
-            } else {
-                let formData = {};
-                for (let i = 0; i < 15; i++) {
-                    formData['question'+i] = answers[i];
-                }
-
-                // Send the dictionary as JSON in a POST request
-                fetch('/questionnaire', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formData)  // Send the collected responses as a JSON object
-                })
-                .then(response => response.json())
-                .then(result => {
-                    // Handle the redirect to the result page
-                    window.location.href = result.redirect_url;
-                })
-                .catch(error => console.error('Error:', error));
-                        }
+                return;
+            }
+    
+            let formData = {};
+            for (let i = 0; i < 15; i++) {
+                formData['question'+i] = answers[i];
+            }
+    
+            // Send the dictionary as JSON in a POST request
+            fetch('/questionnaire', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(result => {
+                // Handle the redirect to the result page
+                window.location.href = result.redirect_url;
+            })
+            .catch(error => console.error('Error:', error));
         }
-
+    
         function updateProgress(currentStep) {
             progressContainer.innerHTML = '';
             for (let i = 1; i <= questions.length; i++) {
                 const bubble = document.createElement('div');
                 bubble.textContent = i;
-                if (i <= currentStep) {
+                if (i === currentStep) {
                     bubble.classList.add('active');
+                } else if (answers[i-1] !== null) {
+                    bubble.classList.add('answered');
                 }
                 progressContainer.appendChild(bubble);
             }
         }
-
+    
         prevButton.addEventListener('click', () => {
             if (currentQuestionIndex > 0) {
                 currentQuestionIndex--;
                 loadQuestion(currentQuestionIndex);
             }
         });
-
+    
         loadQuestion(currentQuestionIndex);
     </script>
 </body>
