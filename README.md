@@ -18,7 +18,7 @@ The goal is to raise awareness, provide early warnings, and encourage individual
 - [Technologies Used](#technologies-used)
 - [Describing Solution](#desceibing-solution)
 - [Future Enhancements](#future-enhancements)
-- [Contributing](#contributing)
+- [Contributors](#contributors)
 
 ---
 
